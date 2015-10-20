@@ -71,5 +71,5 @@ ${markdown} ${infile} > ${tmpfile}
 if [ "x${inenc}" = "xutf-8" ] ; then
   sed -i '1s/^/<meta charset="UTF-8">/' ${tmpfile}
 fi
-${wkhtmltopdf} ${tmpfile} ${outfile} 2> /dev/null
+${wkhtmltopdf} -B 10 -T 10 ${tmpfile} ${outfile} 2> /dev/null
 rm -f ${tmpfile}
