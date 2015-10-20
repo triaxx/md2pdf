@@ -39,6 +39,10 @@ function error ()
 if [ $# -lt 1 ] ; then
   error
 fi
+infile=$1
+if [ ! -f ${infile} ] ; then
+  error "no such file"
+fi
 if [ $(which markdown 2> /dev/null) ] ; then
   markdown=$(which markdown)
 else
@@ -49,7 +53,6 @@ if [ $(which wkhtmltopdf 2> /dev/null) ] ; then
 else
   error "'wkhtmltopdf' command is needed"
 fi
-infile=$1
 intype=$(file -b --mime-type ${infile})
 inenc=$(file -b --mime-encoding ${infile})
 inext=${infile##*.}
